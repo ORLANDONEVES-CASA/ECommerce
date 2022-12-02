@@ -4,6 +4,7 @@ using ECommerce.Common.Responses;
 
 namespace ECommerce.Common.Application.Interfaces
 {
+
     public interface IConceptoRepository : IGenericRepositoryFactory<Concepto>
     {
         Task<List<ConceptoDto>> GetAllConceptoAsync();

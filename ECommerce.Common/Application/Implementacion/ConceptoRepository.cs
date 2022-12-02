@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Common.Application.Implementacion
 {
+
     public class ConceptoRepository : GenericRepository<Concepto>, IConceptoRepository
     {
         private readonly ECommerceDbContext _dbContext;
