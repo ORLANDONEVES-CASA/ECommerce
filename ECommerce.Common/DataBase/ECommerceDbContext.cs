@@ -13,12 +13,13 @@ namespace ECommerce.Common.DataBase
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
+        public virtual DbSet<Bodega> Bodegas { get; set; }
         public virtual DbSet<Concepto> Conceptos { get; set; }
         public virtual DbSet<Departamento> Departamentos { get; set; }
         public virtual DbSet<Genero> Generos { get; set; }
+        public virtual DbSet<Iva> Ivas { get; set; }
+        public virtual DbSet<Medidum> Medida { get; set; }
         public virtual DbSet<TipoDocumento> TipoDocumentos { get; set; }
-
-        public virtual DbSet<Bodega> Bodegas { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -233,6 +234,57 @@ namespace ECommerce.Common.DataBase
                 entity.Property(e => e.RegistrationDate).HasColumnType("datetime");
             });
 
+            modelBuilder.Entity<Iva>(entity =>
+            {
+                entity.ToTable("IVA");
+
+                entity.HasIndex(e => e.Descripcion, "UQ__IVA__92C53B6CD47B7F2D")
+                    .IsUnique();
+
+                entity.Property(e => e.Ivaid).HasColumnName("IVAId");
+
+                entity.Property(e => e.Descripcion)
+                    .IsRequired()
+                    .HasMaxLength(175)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.IsActive).HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.RegistrationDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Tarifa).HasColumnType("decimal(10, 2)");
+            });
+
+            modelBuilder.Entity<Medidum>(entity =>
+            {
+                entity.HasKey(e => e.MedidaId)
+                    .HasName("PK__Medida__5F7A0C02821E425C");
+
+                entity.HasIndex(e => e.Descripcion, "UQ__Medida__92C53B6C91ACE236")
+                    .IsUnique();
+
+                entity.HasIndex(e => e.Escala, "UQ__Medida__9B63C44729ABBBAD")
+                    .IsUnique();
+
+                entity.Property(e => e.Descripcion)
+                    .IsRequired()
+                    .HasMaxLength(175)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Escala)
+                    .IsRequired()
+                    .HasMaxLength(5)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.IsActive).HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.RegistrationDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+            });
+
             modelBuilder.Entity<TipoDocumento>(entity =>
             {
                 entity.ToTable("TipoDocumento");
@@ -249,6 +301,7 @@ namespace ECommerce.Common.DataBase
 
                 entity.Property(e => e.RegistrationDate).HasColumnType("datetime");
             });
+
         }
     }
 
