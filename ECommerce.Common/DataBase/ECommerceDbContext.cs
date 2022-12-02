@@ -18,6 +18,7 @@ namespace ECommerce.Common.DataBase
         public virtual DbSet<Genero> Generos { get; set; }
         public virtual DbSet<TipoDocumento> TipoDocumentos { get; set; }
 
+        public virtual DbSet<Bodega> Bodegas { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -152,6 +153,25 @@ namespace ECommerce.Common.DataBase
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_AspNetUsers");
+            });
+
+            modelBuilder.Entity<Bodega>(entity =>
+            {
+                entity.ToTable("Bodega");
+
+                entity.HasIndex(e => e.Descripcion, "UQ__Bodega__92C53B6CF9327B14")
+                    .IsUnique();
+
+                entity.Property(e => e.Descripcion)
+                    .IsRequired()
+                    .HasMaxLength(175)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.IsActive).HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.RegistrationDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
             });
 
             modelBuilder.Entity<Concepto>(entity =>

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace ECommerce.Common.Entities
 {
-    public partial class Departamento
+    public partial class Bodega
     {
-        public int DepartamentoId { get; set; }
+        public int BodegaId { get; set; }
         public string Descripcion { get; set; }
         public int? IsActive { get; set; }
         public DateTime? RegistrationDate { get; set; }
