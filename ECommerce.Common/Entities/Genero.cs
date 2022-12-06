@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ECommerce.Common.Entities
 {
@@ -9,7 +10,7 @@ namespace ECommerce.Common.Entities
         {
             AspNetUsers = new HashSet<AspNetUser>();
         }
-
+        [Key]
         public int GenderId { get; set; }
         public string GeneroName { get; set; }
         public string Description { get; set; }

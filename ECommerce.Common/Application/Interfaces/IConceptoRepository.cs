@@ -9,6 +9,8 @@ namespace ECommerce.Common.Application.Interfaces
     {
         Task<List<ConceptoDto>> GetAllConceptoAsync();
         Task<GenericResponse<ConceptoDto>> GetOnlyConceptoAsync(int id);
+        Task<GenericResponse<Concepto>> OnlyConceptoGetAsync(int id);
         Task<GenericResponse<Concepto>> DeleteConceptoAsync(int id);
+        Task<GenericResponse<ConceptoDto>> DeactivateConceptoAsync(ConceptoDto avatar);
     }
 }

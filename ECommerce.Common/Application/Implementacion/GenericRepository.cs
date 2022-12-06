@@ -14,7 +14,7 @@ namespace ECommerce.Common.Application.Implementacion
             _dbContext = dbContext;
         }
 
-        public async Task<GenericResponse<TEntity>> AddAsync(TEntity entity)
+        public async Task<GenericResponse<TEntity>> AddDataAsync(TEntity entity)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace ECommerce.Common.Application.Implementacion
             }
         }
 
-        public async Task<GenericResponse<TEntity>> DeleteAsync(TEntity entity)
+        public async Task<GenericResponse<TEntity>> DeleteDataAsync(TEntity entity)
         {
             try
             {
@@ -58,14 +58,14 @@ namespace ECommerce.Common.Application.Implementacion
             }
         }
 
-        public async Task<IReadOnlyList<TEntity>> GetAllAsync()
+        public async Task<IReadOnlyList<TEntity>> GetAllDataAsync()
         {
             IReadOnlyList<TEntity> queryEntity = await _dbContext.Set<TEntity>().ToListAsync();
             return queryEntity;
         }
 
      
-        public async Task<GenericResponse<TEntity>> UpdateAsync(TEntity entity)
+        public async Task<GenericResponse<TEntity>> UpdateDataAsync(TEntity entity)
         {
             try
             {

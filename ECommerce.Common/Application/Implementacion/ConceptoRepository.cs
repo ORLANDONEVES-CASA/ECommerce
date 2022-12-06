@@ -20,6 +20,7 @@ namespace ECommerce.Common.Application.Implementacion
             _mapper = mapper;
         }
 
+       
         public async Task<GenericResponse<Concepto>> DeleteConceptoAsync(int id)
         {
             try
@@ -78,9 +79,47 @@ namespace ECommerce.Common.Application.Implementacion
             }
         }
 
+        public async Task<GenericResponse<ConceptoDto>> DeactivateConceptoAsync(ConceptoDto avatar)
+        {
+            try
+            {
+                var OnlyConcepto = await _dbContext.Conceptos.FirstOrDefaultAsync(c => c.ConceptoId == avatar.ConceptoId);
+                OnlyConcepto.IsActive = 0;
+                _dbContext.Conceptos.Update(OnlyConcepto);
+               await SaveAllAsync();
+                return new GenericResponse<ConceptoDto> { IsSuccess = true, Result = avatar };
+
+            }
+            catch (Exception ex)
+            {
+                return new GenericResponse<ConceptoDto> { IsSuccess = false, Message = ex.Message };
+            }
+        }
+
+
+
         private async Task<bool> SaveAllAsync()
         {
             return await _dbContext.SaveChangesAsync() > 0;
+        }
+
+        public async Task<GenericResponse<Concepto>> OnlyConceptoGetAsync(int id)
+        {
+            try
+            {
+                var OnlyConcepto = await _dbContext.Conceptos.FirstOrDefaultAsync(c => c.ConceptoId.Equals(id));
+                if (OnlyConcepto == null)
+                {
+                    return new GenericResponse<Concepto> { IsSuccess = false, Message = "No hay Datos!" };
+                }
+                
+                return new GenericResponse<Concepto> { IsSuccess = true, Result = OnlyConcepto };
+
+            }
+            catch (Exception ex)
+            {
+                return new GenericResponse<Concepto> { IsSuccess = false, Message = ex.Message };
+            }
         }
     }
 }
