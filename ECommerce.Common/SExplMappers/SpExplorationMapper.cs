@@ -9,6 +9,7 @@ namespace ECommerce.Common.SExplMappers
         public SpExplorationMapper()
         {
             CreateMap<Concepto, ConceptoDto>().ReverseMap();
+            CreateMap<Bodega, BodegaDto>().ReverseMap();
         }
     }
 }

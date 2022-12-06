@@ -20,8 +20,8 @@ builder.Services.AddDbContext<ECommerceDbContext>(o =>
 
 builder.Services.AddAutoMapper(typeof(SpExplorationMapper));
 builder.Services.AddTransient<SeedDb>();
+builder.Services.AddApplication();
 builder.Services.AddFlashMessage();
-builder.Services.AddScoped<IConceptoRepository, ConceptoRepository>();
 // Set the JSON serializer options
 builder.Services.Configure<JsonOptions>(options =>
 {

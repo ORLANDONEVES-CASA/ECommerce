@@ -8,6 +8,7 @@ namespace ECommerce.Common.Application.Implementacion
         public static void AddApplication(this IServiceCollection Services)
         {
             Services.AddScoped<IConceptoRepository, ConceptoRepository>();
+            Services.AddScoped<IBodegaRepository, BodegaRepository>();
         }
     }
 }
