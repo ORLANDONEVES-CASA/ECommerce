@@ -10,6 +10,8 @@ namespace ECommerce.Common.SExplMappers
         {
             CreateMap<Concepto, ConceptoDto>().ReverseMap();
             CreateMap<Bodega, BodegaDto>().ReverseMap();
+            CreateMap<Departamento, DepartamentoDto>().ReverseMap();
+            CreateMap<Iva, IvaDto>().ReverseMap();
         }
     }
 }

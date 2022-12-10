@@ -6,6 +6,10 @@
     <title>@ViewData["Title"] - ECommerce </title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+
+    <link href="~/lib/datepicker/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link href="~/lib/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <link href="~/vendor/toastr/toastr.min.css" rel="stylesheet">
     <!--Iconos de bootstrap 5-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 
@@ -16,6 +20,9 @@
     
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ECommerce.App.styles.css" asp-append-version="true" />
+
+    @await RenderSectionAsync("Estilos", required: false)
+
 </head>
 <body>
     <partial name="_HeaderNavBar" />
@@ -34,6 +41,11 @@
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/rowreorder/1.3.1/js/dataTables.rowReorder.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
+
+     <script src="~/lib/datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="~/lib/sweetalert2/sweetalert2.all.min.js"></script>
+
+    <script src="~/vendor/toastr/toastr.min.js"></script>
     
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>

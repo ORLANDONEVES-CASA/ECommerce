@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+@section Estilos{
+    <!-- ============================================================
+    =ESTILOS PARA ESTA PAGINA
+    ===============================================================-->
+    <link rel="stylesheet" href="~/vendor/datatables/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/buttons.dataTables.min.css">
+
+}
+
+
+<div class="row justify-content-center">
+
+    <div class="col-10">
+
+        <div class="alert alert-info" role="alert">
+            Crud Ivas
+        </div>
+            <button type="button" class="btn btn-success btn-sm boton-nuevo-empleado"><i class="fas fa-plus-circle"></i> Nuevo IVA</button>
+
+        <table class="table table-striped" id="tablaIvas">
+            <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th>Tarifa</th>
+                    <th>Está activo</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+@*<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-second-primary">
+        <h6 class="m-0 font-weight-bold text-white">Lista de Ivas</h6>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-3">
+                <button class="btn btn-success" id="btnNuevo"><i class="fas fa-plus-circle"></i> Nuevo Iva</button>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-bordered" id="tbdata" cellspacing="0" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Descripción</th>
+                            <th>Tarifa</th>
+                            <th>Está activo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+<!-- Modal -->
+<div class="modal fade" id="modalIvas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal IVA</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="mb-3">
+                    <label class="form-label">Descripción</label>
+                    <input type="text" class="form-control" id="txtDescripcion" autocomplete="off">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Sueldo</label>
+                    <input type="number" class="form-control" id="txtTarifa">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary boton-guardar-cambios-empleado">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    @section Scripts{
+    <!-- ============================================================
+    =SCRIPTS PARA ESTA PAGINA
+    ===============================================================-->
+    <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <script src="~/vendor/datatables/extensiones/js/dataTables.responsive.min.js"></script>
+
+    <script src="~/vendor/datatables/extensiones/js/dataTables.buttons.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/jszip.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.html5.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.print.min.js"></script>
+
+    <script src="~/js/indexIva.js"></script>
+
+   @* <script src="~/js/vistas/Producto_Index.js"></script>*@
+
+    <!-- SOLO ES DE EJEMPLO - IGNORAR -->
+    @*    <script src="~/js/vistas/datatables-demo.js"></script>*@
+                    }
+
