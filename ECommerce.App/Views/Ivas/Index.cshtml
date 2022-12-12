@@ -24,7 +24,7 @@
         </div>
             <button type="button" class="btn btn-success btn-sm boton-nuevo-empleado"><i class="fas fa-plus-circle"></i> Nuevo IVA</button>
 
-        <table class="table table-striped" id="tablaIvas">
+            <table id="tablaIvas" class="table table-bordered" cellspacing="0" style="width:100%">
             <thead>
                 <tr>
                     <th>Descripción</th>
@@ -115,6 +115,24 @@
     <script src="~/vendor/datatables/extensiones/js/buttons.print.min.js"></script>
 
     <script src="~/js/indexIva.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tablaIvas').DataTable({
+                responsive: true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                },
+                "aLengthMenu": [
+                    [25, 50, 100, 200, -1],
+                    [25, 50, 100, 200, "Todos"]
+                ]
+            });
+        });
+    </script>
 
    @* <script src="~/js/vistas/Producto_Index.js"></script>*@
 

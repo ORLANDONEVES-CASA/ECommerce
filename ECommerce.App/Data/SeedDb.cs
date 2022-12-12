@@ -18,6 +18,7 @@ namespace ECommerce.App.Data
             await CheckBodegasAsync();
             await CheckDepartamentosAsync();
             await CheckIvaAsync();
+            await CheckMedidumAsync();
         }
         private async Task CheckConceptoAsync()
         {
@@ -91,6 +92,21 @@ namespace ECommerce.App.Data
                 _dataContext.Ivas.Add(new Iva { Descripcion = "IVA 10%", Tarifa = 0.10M, IsActive = 1, RegistrationDate = DateTime.UtcNow });
                 _dataContext.Ivas.Add(new Iva { Descripcion = "IVA 16%", Tarifa = 0.16M, IsActive = 1, RegistrationDate = DateTime.UtcNow });
                 _dataContext.Ivas.Add(new Iva { Descripcion = "IVA 20%", Tarifa = 0.20M, IsActive = 1, RegistrationDate = DateTime.UtcNow });
+
+                await _dataContext.SaveChangesAsync();
+            }
+        }
+
+        private async Task CheckMedidumAsync()
+        {
+            if (!_dataContext.Medida.Any())
+            {
+                _dataContext.Medida.Add(new Medidum { Descripcion = "Gramos", Escala = "GR", IsActive = 1, RegistrationDate = DateTime.UtcNow });
+                _dataContext.Medida.Add(new Medidum { Descripcion = "Kilogramo", Escala = "KG", IsActive = 1, RegistrationDate = DateTime.UtcNow });
+                _dataContext.Medida.Add(new Medidum { Descripcion = "Litro", Escala = "LT", IsActive = 1, RegistrationDate = DateTime.UtcNow });
+                _dataContext.Medida.Add(new Medidum { Descripcion = "Metro", Escala = "MT", IsActive = 1, RegistrationDate = DateTime.UtcNow });
+                _dataContext.Medida.Add(new Medidum { Descripcion = "Onza", Escala = "OZ", IsActive = 1, RegistrationDate = DateTime.UtcNow });
+                _dataContext.Medida.Add(new Medidum { Descripcion = "Unidad", Escala = "UN", IsActive = 1, RegistrationDate = DateTime.UtcNow });
 
                 await _dataContext.SaveChangesAsync();
             }

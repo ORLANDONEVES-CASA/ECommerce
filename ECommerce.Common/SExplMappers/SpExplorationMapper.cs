@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ECommerce.Common.Application.Implementacion;
 using ECommerce.Common.Entities;
 using ECommerce.Common.Models.Dtos;
 
@@ -12,6 +13,7 @@ namespace ECommerce.Common.SExplMappers
             CreateMap<Bodega, BodegaDto>().ReverseMap();
             CreateMap<Departamento, DepartamentoDto>().ReverseMap();
             CreateMap<Iva, IvaDto>().ReverseMap();
+            CreateMap<Medidum, MedidumDto>().ReverseMap();
         }
     }
 }
