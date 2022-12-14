@@ -19,6 +19,7 @@ namespace ECommerce.App.Data
             await CheckDepartamentosAsync();
             await CheckIvaAsync();
             await CheckMedidumAsync();
+            await CheckGeneroAsync();
         }
         private async Task CheckConceptoAsync()
         {
@@ -32,6 +33,20 @@ namespace ECommerce.App.Data
                 await _dataContext.SaveChangesAsync();
             }
         }
+
+        private async Task CheckGeneroAsync()
+        {
+            if (!_dataContext.Generos.Any())
+            {
+                _dataContext.Generos.Add(new Genero { GeneroName="Masculino" ,Description = "M", IsActive = 1, RegistrationDate = DateTime.UtcNow });
+                _dataContext.Generos.Add(new Genero { GeneroName = "Femenino", Description = "F", IsActive = 1, RegistrationDate = DateTime.UtcNow });
+                _dataContext.Generos.Add(new Genero { GeneroName = "Rayito", Description = "LGTHJK", IsActive = 1, RegistrationDate = DateTime.UtcNow });
+                _dataContext.Generos.Add(new Genero {GeneroName = "Otr@s",Description = "O", IsActive = 1, RegistrationDate = DateTime.UtcNow });
+
+                await _dataContext.SaveChangesAsync();
+            }
+        }
+
         private async Task CheckBodegasAsync()
         {
             if (!_dataContext.Bodegas.Any())

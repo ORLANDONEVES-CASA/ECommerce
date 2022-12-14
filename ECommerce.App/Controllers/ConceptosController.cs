@@ -15,7 +15,7 @@ namespace ECommerce.App.Controllers
     {
         private readonly IConceptoRepository _conceptoRepository;
         private readonly IFlashMessage _flashMessagee;
-        private readonly Mapper _mapper;
+      
 
         public ConceptosController(IConceptoRepository conceptoRepository, IFlashMessage flashMessagee)
         {

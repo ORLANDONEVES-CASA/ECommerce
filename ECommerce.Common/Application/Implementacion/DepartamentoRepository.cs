@@ -75,7 +75,7 @@ namespace ECommerce.Common.Application.Implementacion
             return ListDto;
         }
 
-        public async Task<GenericResponse<DepartamentoDto>> GetOnlyBodegaAsync(int id)
+        public async Task<GenericResponse<DepartamentoDto>> GetOnlyDepartamentoAsync(int id)
         {
             try
             {

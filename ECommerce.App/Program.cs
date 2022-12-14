@@ -1,4 +1,6 @@
 using ECommerce.App.Data;
+using ECommerce.App.Helpers.Interfaces;
+using ECommerce.App.Helpers.Repositories;
 using ECommerce.Common.Application.Implementacion;
 using ECommerce.Common.Application.Interfaces;
 using ECommerce.Common.DataBase;
@@ -22,6 +24,10 @@ builder.Services.AddAutoMapper(typeof(SpExplorationMapper));
 builder.Services.AddTransient<SeedDb>();
 builder.Services.AddApplication();
 builder.Services.AddFlashMessage();
+
+//Register dapper in scope    
+builder.Services.AddScoped<IDapperRepository, DapperRepository>();
+
 // Set the JSON serializer options
 builder.Services.Configure<JsonOptions>(options =>
 {

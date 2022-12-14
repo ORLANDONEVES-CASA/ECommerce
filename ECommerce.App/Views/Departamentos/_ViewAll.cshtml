@@ -28,7 +28,7 @@
                     @Html.DisplayFor(modelItem => item.IsActive)
                 </td>
                 <td>
-                    <a onclick="showInPopup('@Url.Action("AddOrEdit", "Bodegas", new { id = item.DepartamentoId }, Context.Request.Scheme)' , 'Actualizar Categoría')" class="btn btn-sm btn-outline-warning"><i class="bi bi-pencil-square"></i> </a>
+                    <a onclick="showInPopup('@Url.Action("AddOrEdit", "Departamentos", new { id = item.DepartamentoId }, Context.Request.Scheme)' , 'Actualizar Categoría')" class="btn btn-sm btn-outline-warning"><i class="bi bi-pencil-square"></i> </a>
                     <button data-id="@item.DepartamentoId" class="btn btn-sm btn-outline-danger deleteItem" data-bs-toggle="modal" data-bs-target="#deleteDialog"><i class="bi bi-trash"></i></button>
                 </td>
             </tr>

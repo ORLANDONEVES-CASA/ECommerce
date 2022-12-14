@@ -6,5 +6,7 @@
         public string Message { get; set; }
         public T Result { get; set; }
         public List<T> ListResults { get; set; }
+        public string ErrorMessage { get; set; }
+        public int TruePasswordHash { get; set; }
     }
 }
