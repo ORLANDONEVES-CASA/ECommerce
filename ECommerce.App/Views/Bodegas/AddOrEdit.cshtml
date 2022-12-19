@@ -1,0 +1,33 @@
+﻿@model BodegaDto
+@{
+    ViewData["Title"] = "AddOrEdit";
+    Layout = null;
+}
+
+<h1>AddOrEdit</h1>
+
+<div class="container smfont">
+    <form asp-action="AddOrEdit" autocomplete="off" asp-route-id="@Model.BodegaId" onsubmit="return jQueryAjaxPost(this);">
+        <div class="box-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="BodegaId" />
+
+            <div class="form-group">
+                <span class="required">*</span>
+                <label asp-for="Descripcion" class="control-label"></label>
+                <input asp-for="Descripcion" class="form-control smfont" placeholder="Descripcion" />
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-outline-primary" data-bs-dismiss="modal"><i class="bi bi-x-octagon"></i> Cancelar</button>
+            <button type="submit" class="btn btn-sm btn-outline-success"><i class="bi bi-save-fill"></i> Guardar</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
