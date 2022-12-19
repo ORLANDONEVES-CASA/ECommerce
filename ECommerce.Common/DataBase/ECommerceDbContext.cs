@@ -19,6 +19,7 @@ namespace ECommerce.Common.DataBase
         public virtual DbSet<Genero> Generos { get; set; }
         public virtual DbSet<Iva> Ivas { get; set; }
         public virtual DbSet<Medidum> Medida { get; set; }
+        public virtual DbSet<Producto> Productos { get; set; }
         public virtual DbSet<TipoDocumento> TipoDocumentos { get; set; }
 
 
@@ -285,6 +286,54 @@ namespace ECommerce.Common.DataBase
                     .HasDefaultValueSql("(getdate())");
             });
 
+            modelBuilder.Entity<Producto>(entity =>
+            {
+                entity.HasKey(e => e.Idproducto);
+
+                entity.ToTable("Producto");
+
+                entity.Property(e => e.Idproducto).HasColumnName("IDProducto");
+
+                entity.Property(e => e.Descripcion)
+                    .IsRequired()
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Ivaid).HasColumnName("IVAId");
+
+                entity.Property(e => e.Medida).HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.Nombre)
+                    .IsRequired()
+                    .HasMaxLength(150)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Notas).IsUnicode(false);
+
+                entity.Property(e => e.PathImagen).IsUnicode(false);
+
+                entity.Property(e => e.Pieza).HasColumnType("decimal(18, 2)");
+
+                entity.Property(e => e.Precio).HasColumnType("money");
+
+                entity.HasOne(d => d.Departamento)
+                    .WithMany(p => p.Productos)
+                    .HasForeignKey(d => d.DepartamentoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Producto_Departamento");
+
+                entity.HasOne(d => d.Iva)
+                    .WithMany(p => p.Productos)
+                    .HasForeignKey(d => d.Ivaid)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Producto_IVA");
+
+                entity.HasOne(d => d.MedidaNavigation)
+                    .WithMany(p => p.Productos)
+                    .HasForeignKey(d => d.MedidaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Producto_Medida");
+            });
+
             modelBuilder.Entity<TipoDocumento>(entity =>
             {
                 entity.ToTable("TipoDocumento");
@@ -301,7 +350,6 @@ namespace ECommerce.Common.DataBase
 
                 entity.Property(e => e.RegistrationDate).HasColumnType("datetime");
             });
-
         }
     }
 

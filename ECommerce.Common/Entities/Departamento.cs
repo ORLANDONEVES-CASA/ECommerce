@@ -5,9 +5,16 @@ namespace ECommerce.Common.Entities
 {
     public partial class Departamento
     {
+        public Departamento()
+        {
+            Productos = new HashSet<Producto>();
+        }
+
         public int DepartamentoId { get; set; }
         public string Descripcion { get; set; }
         public int? IsActive { get; set; }
         public DateTime? RegistrationDate { get; set; }
+
+        public virtual ICollection<Producto> Productos { get; set; }
     }
 }
