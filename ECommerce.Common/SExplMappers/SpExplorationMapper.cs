@@ -14,6 +14,7 @@ namespace ECommerce.Common.SExplMappers
             CreateMap<Departamento, DepartamentoDto>().ReverseMap();
             CreateMap<Iva, IvaDto>().ReverseMap();
             CreateMap<Medidum, MedidumDto>().ReverseMap();
+            CreateMap<Producto, ProductoDto>().ReverseMap();
         }
     }
 }

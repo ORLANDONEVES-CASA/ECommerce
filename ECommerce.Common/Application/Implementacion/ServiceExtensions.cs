@@ -12,6 +12,7 @@ namespace ECommerce.Common.Application.Implementacion
             Services.AddScoped<IDepartamentoRepository, DepartamentoRepository>();
             Services.AddScoped<IIvaRepository, IvaRepository>();
             Services.AddScoped<IMedidumRepository, MedidumRepository>();
+            Services.AddScoped<IProductoRepository, ProductoRepository>();
         }
     }
 }

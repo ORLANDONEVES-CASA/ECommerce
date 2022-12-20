@@ -13,7 +13,9 @@ namespace ECommerce.Common.DataBase
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
+        public virtual DbSet<Barra> Barras { get; set; }
         public virtual DbSet<Bodega> Bodegas { get; set; }
+        public virtual DbSet<BodegaProducto> BodegaProductos { get; set; }
         public virtual DbSet<Concepto> Conceptos { get; set; }
         public virtual DbSet<Departamento> Departamentos { get; set; }
         public virtual DbSet<Genero> Generos { get; set; }
@@ -21,7 +23,6 @@ namespace ECommerce.Common.DataBase
         public virtual DbSet<Medidum> Medida { get; set; }
         public virtual DbSet<Producto> Productos { get; set; }
         public virtual DbSet<TipoDocumento> TipoDocumentos { get; set; }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -157,6 +158,26 @@ namespace ECommerce.Common.DataBase
                     .HasConstraintName("fk_AspNetUsers");
             });
 
+            modelBuilder.Entity<Barra>(entity =>
+            {
+                entity.HasKey(e => new { e.Idproducto, e.Barcode })
+                    .HasName("PK__Barra__9AAD72B92F78823C");
+
+                entity.ToTable("Barra");
+
+                entity.Property(e => e.Idproducto).HasColumnName("IDProducto");
+
+                entity.Property(e => e.Barcode)
+                    .HasMaxLength(150)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.IdproductoNavigation)
+                    .WithMany(p => p.Barras)
+                    .HasForeignKey(d => d.Idproducto)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Barra_Producto");
+            });
+
             modelBuilder.Entity<Bodega>(entity =>
             {
                 entity.ToTable("Bodega");
@@ -174,6 +195,36 @@ namespace ECommerce.Common.DataBase
                 entity.Property(e => e.RegistrationDate)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
+            });
+
+            modelBuilder.Entity<BodegaProducto>(entity =>
+            {
+                entity.HasKey(e => new { e.Idproducto, e.BodegaId })
+                    .HasName("PK__BodegaPr__E8A0DB1D1F42FDA5");
+
+                entity.ToTable("BodegaProducto");
+
+                entity.Property(e => e.Idproducto).HasColumnName("IDProducto");
+
+                entity.Property(e => e.CantidadMinima).HasColumnType("decimal(18, 2)");
+
+                entity.Property(e => e.Maximo).HasColumnType("decimal(18, 2)");
+
+                entity.Property(e => e.Minimo).HasColumnType("decimal(18, 2)");
+
+                entity.Property(e => e.Stock).HasColumnType("decimal(18, 2)");
+
+                entity.HasOne(d => d.Bodega)
+                    .WithMany(p => p.BodegaProductos)
+                    .HasForeignKey(d => d.BodegaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_BodegaProducto_Bodega");
+
+                entity.HasOne(d => d.IdproductoNavigation)
+                    .WithMany(p => p.BodegaProductos)
+                    .HasForeignKey(d => d.Idproducto)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_BodegaProducto_Producto");
             });
 
             modelBuilder.Entity<Concepto>(entity =>
@@ -298,6 +349,8 @@ namespace ECommerce.Common.DataBase
                     .IsRequired()
                     .IsUnicode(false);
 
+                entity.Property(e => e.IsActive).HasDefaultValueSql("((1))");
+
                 entity.Property(e => e.Ivaid).HasColumnName("IVAId");
 
                 entity.Property(e => e.Medida).HasDefaultValueSql("((1))");
@@ -314,6 +367,10 @@ namespace ECommerce.Common.DataBase
                 entity.Property(e => e.Pieza).HasColumnType("decimal(18, 2)");
 
                 entity.Property(e => e.Precio).HasColumnType("money");
+
+                entity.Property(e => e.RegistrationDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.HasOne(d => d.Departamento)
                     .WithMany(p => p.Productos)
@@ -352,5 +409,4 @@ namespace ECommerce.Common.DataBase
             });
         }
     }
-
 }
