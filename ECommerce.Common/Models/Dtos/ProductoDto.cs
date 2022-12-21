@@ -66,6 +66,7 @@ namespace ECommerce.Common.Models.Dtos
 
         [Display(Name = "Pieza")]
         [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        [MaxLength(18, ErrorMessage = "El campo {0} debe tener una longitud máxima de {1} caracteres")]
         public decimal Pieza { get; set; }
 
 

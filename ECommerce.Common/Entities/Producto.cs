@@ -22,5 +22,6 @@ namespace ECommerce.Common.Entities
         public virtual Departamento Departamento { get; set; }
         public virtual Iva Iva { get; set; }
         public virtual Medidum MedidaNavigation { get; set; }
+        public int IsActive { get; set; }
     }
 }
