@@ -10,6 +10,7 @@ namespace ECommerce.Common.Application.Implementacion
 {
     public class ProductoRepository : GenericRepository<Producto>, IProductoRepository
     {
+
        private readonly ECommerceDbContext _dbContext;
        private readonly IMapper _mapper;
 
@@ -29,7 +30,6 @@ namespace ECommerce.Common.Application.Implementacion
                _dbContext.Productos.Update(OnlyDepart);
                await SaveAllAsync();
                return new GenericResponse<ProductoDto> { IsSuccess = true, Result = avatar };
-
            }
            catch (Exception ex)
            {

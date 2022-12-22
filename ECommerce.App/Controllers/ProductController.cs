@@ -10,12 +10,12 @@ using static ECommerce.App.Helpers.ModalHelper;
 
 namespace ECommerce.App.Controllers
 {
-    public class ProductsControllercs : Controller
+    public class ProductController : Controller
     {
         private readonly IProductoRepository _productoRepository;
         private readonly IFlashMessage _flashMessagee;
 
-        public ProductsControllercs(IProductoRepository productoRepository, IFlashMessage flashMessagee)
+        public ProductController(IProductoRepository productoRepository, IFlashMessage flashMessagee)
         {
             _productoRepository = productoRepository;
             _flashMessagee = flashMessagee;
@@ -39,7 +39,7 @@ namespace ECommerce.App.Controllers
                 var Depart = await _productoRepository.GetOnlyProducoAsync(id);
                 if (!Depart.IsSuccess)
                 {
-                   return NotFound();
+                    return NotFound();
                 }
                 return View(Depart.Result);
             }
