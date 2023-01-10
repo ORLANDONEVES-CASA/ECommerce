@@ -41,13 +41,13 @@ namespace ECommerce.Common.Application.Implementacion
        {
            try
            {
-              var Depto = await _dbContext.Departamentos.FirstOrDefaultAsync(c => c.DepartamentoId == id);
-               if (Depto == null)
+              var prod = await _dbContext.Productos.FirstOrDefaultAsync(c => c.Idproducto == id);
+               if (prod == null)
                {
                    return new GenericResponse<Producto> { IsSuccess = false, Message = "No hay Datos!" };
                }
-               Depto.IsActive = 0;
-               _dbContext.Departamentos.Update(Depto);
+               prod.IsActive = 0;
+               _dbContext.Productos.Update(prod);
                if (!await SaveAllAsync())
                {
                    return new GenericResponse<Producto> { IsSuccess = false, Message = "La operacion no realizada!" };
